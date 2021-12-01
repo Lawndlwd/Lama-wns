@@ -1,0 +1,23 @@
+services:
+  server:
+    build: server
+    ports:
+      - 8080:8080
+    command: npm start
+    environment:
+      - ACCESS_TOKEN=GHJFSJDFGSJHD
+      - REFRESH_TOKEN=HGSFDKJGHSDKFJGHDFLKKLF
+    volumes:
+      - /server/src/:/app/src/
+    links:
+      - mongodb
+  mongodb:
+    image: mongo
+    volumes:
+      - /data:/data/db
+  client:
+    build: client
+    ports:
+      - 3000:3000
+    volumes:
+      - /client/src/:/client/src/

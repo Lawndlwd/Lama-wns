@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "PTSansCaption Bold";
+  src: url("./assets/fonts/PTSansCaption-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "PTSansCaption Regular";
+  src: url("./assets/fonts/PTSansCaption-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Racing Sans One";
+  src: url("./assets/fonts/RacingSansOne-Regular.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+/* .App {
+  width: 100vw;
+} */
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  @media (min-width: 800px) {
+    margin-right: 50px;
+    :last-child {
+      margin-right: 0;
+    }
+  }
+  cursor: pointer;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 20px;
+  @media (min-width: 800px) {
+    margin-right: 50px;
+    :last-child {
+      margin-right: 0;
+    }
+  }
+  cursor: pointer;
+}

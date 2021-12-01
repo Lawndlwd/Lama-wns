@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node_version: [14]
+
+    steps:
+      - name: checks-directory
+        run: |
+          if [ -d "./.idea" ]; then echo "Forbidden Webstorm folder (.idea/) found ! Please, ignore in .gitignore"; exit 2; fi
+          if [ -d "./.vscode" ]; then echo "Forbidden VScode folder (.vscode) found ! Please, ignore in .gitignore"; exit 2; fi
+          if [ $(find ./ -name .DS_Store) ]; then echo "Forbidden MacOS boring file (.DS_Store) found ! Please, ignore in .gitignore"; exit 2; fi
+          if [ -d "./node_modules" ]; then echo "Forbidden external libs folder (node_modules/) found !"; exit 2; fi
+
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node_version: ${{ matrix.node_version }}
+
+      - name: code_quality
+        run: |
+          npm install # or yarn install
+          npm run lint # or yarn lint
+          npm run test # or yarn test
+          npm run build # or yarn build
